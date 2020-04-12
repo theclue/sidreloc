@@ -1,0 +1,15 @@
+*.cache
+*.o
+oobj
+.tar.gz
+*.log
+*.swp
+.~
+thumbs.db
+.DS_Store
+.exe
+Makefile
+config.status
+configure.scan
+config.h
+sidreloc
