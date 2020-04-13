@@ -33,6 +33,10 @@
 #include <err.h>
 #endif
 
+#ifndef HAVE_ERR
+#include <errno.h>
+#endif
+
 struct sidheader {
 	uint8_t			rsid;
 	uint8_t			nsubtune;
@@ -820,3 +824,26 @@ int main(int argc, char **argv) {
 
 	return RET_SUCCESS | exitbits;
 }
+
+#ifndef HAVE_ERRX
+/*  Some posix has not this standard, function (for ex. Haiku)
+	so, we define a roughly equivalente */
+static void errx(int eval, const char *fmt, ...){
+	fprintf(stderr,"%s: ", "sidreloc");
+	fprintf(stderr,fmt, ...);
+	fprintf(stderr,"\n");
+	exit(eval);
+}
+#endif
+
+#ifndef HAVE_ERR
+/*  Some posix has not this standard, function (for ex. Haiku)
+	so, we define a roughly equivalente */
+static void err(int eval, const char *fmt, ...){
+	fprintf(stderr, " %s: ", "sidreloc");
+	fprintf(stderr, fmt, ...);
+	fprintf(stderr, ": %s\n", strerror(errno));
+	exit(eval);
+}
+#endif
+
