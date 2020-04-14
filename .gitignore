@@ -20,7 +20,6 @@ Makefile.in
 /ar-lib
 /mdate-sh
 /py-compile
-/test-driver
 /ylwrap
 .deps/
 .dirstamp
